@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Game">
+
+    <LinearLayout
+        android:id="@+id/linearLayout_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.28">
+
+        <LinearLayout
+            android:id="@+id/linearLayout_0"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".33"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButton_0_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@android:color/holo_blue_light" />
+
+            <ImageButton
+                android:id="@+id/imageButton_1_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@android:color/holo_blue_dark" />
+
+            <ImageButton
+                android:id="@+id/imageButton_2_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@android:color/holo_blue_bright" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".33"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButton_0_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@android:color/holo_orange_dark" />
+
+            <ImageButton
+                android:id="@+id/imageButton_1_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@android:color/holo_green_light" />
+
+            <ImageButton
+                android:id="@+id/imageButton_2_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@android:color/holo_green_dark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout_2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".33"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButton_0_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@android:color/holo_red_light" />
+
+            <ImageButton
+                android:id="@+id/imageButton_1_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@android:color/holo_red_dark" />
+
+            <ImageButton
+                android:id="@+id/imageButton_2_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                app:srcCompat="@android:color/holo_purple" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
