@@ -13,9 +13,9 @@ public class GameSelection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_selection);
 
-        Button btn_pvp = (Button) findViewById(R.id.btn_pvp);
+        Button btn_pvp = findViewById(R.id.btn_pvp);
         btn_pvp.setOnClickListener(new View.OnClickListener() {
-            Intent intent = new Intent(GameSelection.this, Game.class);
+            final Intent intent = new Intent(GameSelection.this, Game.class);
             public void onClick(View v) {
                 startActivity(intent);
             }

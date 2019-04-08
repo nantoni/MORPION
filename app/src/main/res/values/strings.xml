@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TP1_MORPION</string>
+    <string name="btn_pve">PVE</string>
+    <string name="btn_pvp">PVP</string>
 </resources>
