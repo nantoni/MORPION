@@ -15,9 +15,19 @@ public class GameSelection extends AppCompatActivity {
 
         Button btn_pvp = findViewById(R.id.btn_pvp);
         btn_pvp.setOnClickListener(new View.OnClickListener() {
-            final Intent intent = new Intent(GameSelection.this, Game.class);
             public void onClick(View v) {
-                startActivity(intent);
+                Intent i = new Intent(GameSelection.this, Game.class);
+                i.putExtra("mode", "pvp");
+                startActivity(i);
+            }
+        });
+
+        Button btn_pve = findViewById(R.id.btn_pve);
+        btn_pve.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(GameSelection.this, Game.class);
+                i.putExtra("mode", "pve");
+                startActivity(i);
             }
         });
     }
