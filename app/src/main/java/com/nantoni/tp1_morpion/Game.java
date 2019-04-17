@@ -9,6 +9,7 @@ import android.text.SpannableString;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,24 +77,41 @@ public class Game extends AppCompatActivity {
                                 ((ImageButton)v).setImageResource(R.drawable.circle);
                                 stateGrid[index] = 1;
                                 circleTurn = false;
-                                ((TextView) findViewById(R.id.textView_playerCircle_Win)).setTextColor(Color.BLACK);
-                                ((TextView) findViewById(R.id.textView_playerCross_Win)).setTextColor(Color.RED);
                             }else {
                                 stateGrid[index] = 2;
                                 ((ImageButton)v).setImageResource(R.drawable.cross);
                                 circleTurn = true;
-                                ((TextView) findViewById(R.id.textView_playerCircle_Win)).setTextColor(Color.RED);
-                                ((TextView) findViewById(R.id.textView_playerCross_Win)).setTextColor(Color.BLACK);
                             }
-                            checkWin();
-                            if(ia){
-                                iaTurn();
+                            boolean won = checkWin();
+                            if(!won){
+                                updatePlayerColor();
+                                if(ia){
+                                    iaTurn();
+                                }
                             }
                         }
                     }
                 }
             });
         }
+    }
+
+    private void updatePlayerColor (){
+        int circleColor = Color.BLACK;
+        int crossColor = Color.RED;
+        int circleArrowVisibility = View.INVISIBLE;
+        int crossArrowVisibility = View.VISIBLE;
+        if(circleTurn){
+            circleColor = Color.RED;
+            crossColor = Color.BLACK;
+            circleArrowVisibility = View.VISIBLE;
+            crossArrowVisibility = View.INVISIBLE;
+        }
+        ((TextView) findViewById(R.id.textView_playerCircle_Win)).setTextColor(circleColor);
+        ((TextView) findViewById(R.id.textView_playerCross_Win)).setTextColor(crossColor);
+
+        ((ImageView) findViewById(R.id.imageView_circleArrow)).setVisibility(circleArrowVisibility);
+        ((ImageView) findViewById(R.id.imageView_crossArrow)).setVisibility(crossArrowVisibility);
     }
 
     private void iaTurn(){
@@ -106,13 +124,16 @@ public class Game extends AppCompatActivity {
 
         int random = new Random().nextInt(unsetCount);
 
-        for(int i = 0; i < stateGrid.length; i++){
-            if(stateGrid[i] == 0){
-                if(random-- == 0){
-                    buttonGrid.get(random).setImageResource(R.drawable.cross);
-                    stateGrid[random] = 2;
+        for(int j = 0; j < stateGrid.length; j++){
+            if(stateGrid[j] == 0){
+                if(random == 0){
+                    buttonGrid.get(j).setImageResource(R.drawable.cross);
+                    stateGrid[j] = 2;
                     circleTurn = true;
+                    updatePlayerColor ();
+                    random = 0;
                 }
+                random--;
             }
         }
         checkWin();
@@ -127,11 +148,17 @@ public class Game extends AppCompatActivity {
             }
         }
         lockButtons(true);
+
+        if(!circleTurn && ia){
+            iaTurn();
+        }
+
+        updatePlayerColor();
     }
 
     // Check if a player has won
     private String winner;
-    private void checkWin(){
+    private boolean checkWin(){
         winner = "";
               if ((stateGrid[0] == stateGrid[1] && stateGrid[1]== stateGrid[2]) ||
                   (stateGrid[0] == stateGrid[3] && stateGrid[3]== stateGrid[6])){
@@ -170,6 +197,7 @@ public class Game extends AppCompatActivity {
               if(!winner.isEmpty()){
                   Toast.makeText(getApplicationContext(), winner + " WON!",Toast.LENGTH_SHORT).show();
                   lockButtons(false);
+                  return true;
               }else {
                   int setCount = 0;
                   for(int i = 0; i < stateGrid.length; i++){
@@ -180,8 +208,10 @@ public class Game extends AppCompatActivity {
                   if(setCount == 9){
                       Toast.makeText(getApplicationContext(), "DRAW!",Toast.LENGTH_SHORT).show();
                       lockButtons(false);
+                      return true;
                   }
               }
+              return false;
     }
 
     private void lockButtons(boolean block){
